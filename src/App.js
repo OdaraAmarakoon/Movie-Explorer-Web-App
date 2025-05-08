@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import MovieDetails from "./pages/MovieDetails";
+import Favorites from "./pages/Favorites";
+import Login from "./pages/Login";
+import Navbar from "./components/Navbar";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import { useMovieContext } from "./context/MovieContext";
 
 function App() {
+  const { themeMode } = useMovieContext();
+  const theme = createTheme({ palette: { mode: themeMode } });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movie/:id" element={<MovieDetails />} />
+        <Route path="/favorites" element={<Favorites />} />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </ThemeProvider>
   );
 }
 
