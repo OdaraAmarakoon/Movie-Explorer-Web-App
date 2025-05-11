@@ -24,5 +24,6 @@
 3. Add TMDb API key in `.env`
 4. Run `npm start`
 
-# Live Demo
-👉 
+# Demo
+![image alt](https://github.com/OdaraAmarakoon/Movie-Explorer-Web-App/blob/main/Screenshot%202025-05-11%20181358.png)
+
