@@ -1,0 +1,39 @@
+key 6e2b6b5dc43541598deb9e7a61473830
+
+// talken
+eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2ZTJiNmI1ZGM0MzU0MTU5OGRlYjllN2E2MTQ3MzgzMCIsIm5iZiI6MTc0Njk1NTA0My40MTYsInN1YiI6IjY4MjA2YjIzMzQxOTRkNDBkMDRiM2ZhYyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.RAGUvtojDC7K-4WHkaJULJ22107cTYfqT3pK4d-bwX4
+
+
+import React, { useEffect, useState } from "react";
+
+const MovieCard = () => {
+  const [MovieList, setMovieList] = useState([]);
+
+  const getMovie = () => {
+    fetch(
+      "https://api.themoviedb.org/3/discover/movie?api_key=6e2b6b5dc43541598deb9e7a61473830"
+    )
+      .then((res) => res.json())
+      .then((json) => setMovieList(json.results));
+  };
+
+  useEffect(() => {
+    getMovie();
+  }, []);
+
+  console.log(MovieList);
+
+  return (
+    <div>
+      {MovieList.map((MovieCard) => (
+        // eslint-disable-next-line jsx-a11y/alt-text
+        <img
+          style={{ width: "300px", height: "250px" }}
+          src={"https://image.tmdb.org/t/p/w500${movie.poster_path}"}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default MovieCard;
